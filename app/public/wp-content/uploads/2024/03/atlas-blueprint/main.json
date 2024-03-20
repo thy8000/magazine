@@ -1,0 +1,43 @@
+{
+    "schema": "2.0",
+    "blueprint": {
+        "version": "1.0",
+        "name": "Faust Scaffold Blueprint",
+        "description": ""
+    },
+    "services": {
+        "wordpress": {
+            "version": "6.2.2",
+            "theme": {
+                "twentytwentythree": {
+                    "version": "1.1"
+                }
+            },
+            "wp-options": {
+                "stylesheet": "twentytwentythree",
+                "template": "twentytwentythree",
+                "current_theme": "Twenty Twenty-Three",
+                "theme_mods_twentytwentythree": {
+                    "custom_css_post_id": -1,
+                    "wp_classic_sidebars": [],
+                    "nav_menu_locations": []
+                }
+            },
+            "plugins": {
+                "wpe-atlas-headless-extension": {
+                    "version": "0.1.0"
+                },
+                "faustwp": {
+                    "version": "1.0.1"
+                },
+                "wp-graphql": {
+                    "version": "1.14.7"
+                }
+            },
+            "posts": {},
+            "post_terms": {},
+            "post_meta": {},
+            "media": []
+        }
+    }
+}
