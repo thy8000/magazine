@@ -1,6 +1,6 @@
 import { useQuery, gql } from "@apollo/client";
 
-import { Meta } from '../components/_index';
+import { Meta } from "../components/_index";
 
 export default function FrontPage() {
   const { data } = useQuery(FrontPage.query);
@@ -9,11 +9,11 @@ export default function FrontPage() {
 
   return (
     <>
-      <Meta 
-        title={siteGeneralSettings.title ?? ''}
-        description={siteGeneralSettings.description ?? ''}
+      <Meta
+        title={siteGeneralSettings.title ?? ""}
+        description={siteGeneralSettings.description ?? ""}
       />
-      
+
       <h1>Front Page</h1>
     </>
   );
