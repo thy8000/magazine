@@ -6,4 +6,5 @@ if(!defined('ABSPATH')) {
     exit;
 }
 
-require_once implode(DIRECTORY_SEPARATOR, [__DIR__, 'entities', '_index.php']);
+require_once implode(DIRECTORY_SEPARATOR, [__DIR__, 'includes', 'entities', '_index.php']);
+require_once implode(DIRECTORY_SEPARATOR, [__DIR__, 'includes', 'hooks', '_index.php']);
