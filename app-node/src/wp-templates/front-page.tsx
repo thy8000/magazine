@@ -1,6 +1,6 @@
 import { useQuery, gql } from "@apollo/client";
 
-import { Meta } from "../components/_index";
+import { Meta, Header } from "../components/_index";
 
 export default function FrontPage() {
   const { data } = useQuery(FrontPage.query);
@@ -13,6 +13,8 @@ export default function FrontPage() {
         title={siteGeneralSettings.title ?? ""}
         description={siteGeneralSettings.description ?? ""}
       />
+
+      <Header />
 
       <h1>Front Page</h1>
     </>
