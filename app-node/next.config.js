@@ -1,6 +1,15 @@
-const { withFaust, getWpHostname } = require('@faustwp/core');
+const { withFaust, getWpHostname } = require("@faustwp/core");
 
 /**
  * @type {import('next').NextConfig}
  **/
-module.exports = withFaust({});
+module.exports = withFaust({
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+    ],
+  },
+});
