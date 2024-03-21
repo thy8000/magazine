@@ -48,6 +48,10 @@ export default function Meta({ title, description, imageUrl, url }: MetaProps) {
             <meta property="twitter:url" content={url} />
           </>
         )}
+
+        <meta charSet="utf-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
     </>
   );
