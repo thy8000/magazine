@@ -9,7 +9,16 @@ const CUSTOM_LOGO_SIZE = [
     'width'       => 220,
     'height'      => 186,
 ];
-const CUSTOM_COLORS = ['page_color'];
+const CUSTOM_COLORS = [
+    'pageColor' => [
+        'label' => 'Página', 
+        'priority' => 1,
+    ],
+    'headerColor' => [
+        'label' => 'Header', 
+        'priority' => 2,
+    ],
+];
 
 class ThemeCustomizer
 {
@@ -62,23 +71,25 @@ class ThemeCustomizer
             'title' => esc_html__('Cores', 'magazine'),
         ]);
 
-        $wp_customize->add_setting('page_color', [
-            'default' => '#FFFFFF',
-        ]);
+        foreach(CUSTOM_COLORS as $color_slug => $color) {
+            $wp_customize->add_setting($color_slug, [
+                'default' => '#FFFFFF',
+            ]);
 
-        $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'page_color', [
-            'label'    => esc_html__('Página', 'magazine'),
-            'section'  => 'custom_colors',
-            'settings' => 'page_color',
-            'priority' => 1,
-        ]));
+            $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, $color_slug, [
+                'label'    => esc_html__($color['label'], 'magazine'),
+                'section'  => 'custom_colors',
+                'settings' => $color_slug,
+                'priority' => $color['priority'],
+            ]));
+        }
     }
 
     public function custom_colors_graphql() {
         $custom_colors_object_fields = [];
 
-        foreach(CUSTOM_COLORS as $color) {
-            $custom_colors_object_fields[$color] = ['type' => 'String'];
+        foreach(CUSTOM_COLORS as $key => $color) {
+            $custom_colors_object_fields[$key] = ['type' => 'String'];
         }
 
         register_graphql_object_type('CustomColors', [
@@ -94,8 +105,8 @@ class ThemeCustomizer
 
                 $custom_color_fields = [];
 
-                foreach(CUSTOM_COLORS as $color) {
-                    $custom_color_fields[$color] = get_theme_mod($color) ? get_theme_mod($color) : '#FFFFFF';
+                foreach(CUSTOM_COLORS as $key => $color) {
+                    $custom_color_fields[$key] = get_theme_mod($key) ? get_theme_mod($key) : '#FFFFFF';
                 }
 
                 return $custom_color_fields;
