@@ -6,10 +6,8 @@ export default function Header() {
 
     const customLogo = data?.customLogo ?? [];
 
-    console.log(customLogo);
-
     return (
-        <header className="flex">
+        <header className="flex bg-header">
             <div>
                 { customLogo.url !== null &&(
                     <Image

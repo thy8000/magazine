@@ -1,6 +1,6 @@
 import { useQuery, gql } from "@apollo/client";
 
-import { Meta, Header } from "../components/_index";
+import { Meta, Header, CustomColors } from "../components/_index";
 
 export default function FrontPage() {
   const { data } = useQuery(FrontPage.query);
@@ -8,16 +8,18 @@ export default function FrontPage() {
   const siteGeneralSettings = data?.generalSettings ?? [];
 
   return (
-    <>
+    <div className="bg-page_color">
       <Meta
         title={siteGeneralSettings.title ?? ""}
         description={siteGeneralSettings.description ?? ""}
       />
 
+      <CustomColors />
+
       <Header />
 
       <h1>Front Page</h1>
-    </>
+    </div>
   );
 }
 

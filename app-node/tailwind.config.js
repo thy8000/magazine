@@ -19,6 +19,11 @@ const fallbackFonts = [
   'Noto Color Emoji',
 ];
 
+let customColors = {
+  page:   'var(--pageColor)',
+  header: 'var(--headerColor)',
+};
+
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
@@ -32,9 +37,9 @@ module.exports = {
       white: colors.white,
       black: colors.black,
       neutral: colors.neutral,
+      ...customColors,
     },
     extend: {},
   },
   plugins: [],
 }
-
