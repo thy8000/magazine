@@ -2,8 +2,10 @@ import { useQuery, gql } from "@apollo/client";
 
 import { Meta, Header, CustomColors } from "../components/_index";
 
+import { FrontPageQuery  } from "../queries/FrontPage";
+
 export default function FrontPage() {
-  const { data } = useQuery(FrontPage.query);
+  const { data } = useQuery(FrontPageQuery);
 
   const siteGeneralSettings = data?.generalSettings ?? [];
 
@@ -22,12 +24,3 @@ export default function FrontPage() {
     </div>
   );
 }
-
-FrontPage.query = gql`
-  query getFrontPage {
-    generalSettings {
-      title
-      description
-    }
-  }
-`;

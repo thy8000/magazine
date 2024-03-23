@@ -1,19 +1,23 @@
 import { useQuery, gql } from "@apollo/client";
 import Image  from 'next/image';
-import { CustomLogoFragment, ThemeOptionsHeaderFragment } from '../../fragments/_index';
+import { HeaderQuery } from '../../queries/_index';
 
 export default function Header() {
-    const { data } = useQuery(Header.query);
+    const { data } = useQuery(HeaderQuery);
 
     const customLogo = data?.customLogo ?? [];
     const headerCategories = getHeaderCategories(data);
+
+    const socialShares = getSocialShares(data);
+
+    console.log(socialShares)
 
     return (
         <header className="flex bg-header">
             <div className="container">
                 <div className="flex justify-evenly">
                     <div>
-                        { customLogo.url !== null &&(
+                        { customLogo.url !== null && (
                             <Image
                                 className="w-auto"
                                 src={customLogo.url}
@@ -21,7 +25,7 @@ export default function Header() {
                                 width={customLogo.width ?? 256}
                                 height={customLogo.height ?? 79}
                             />
-                        )}        
+                        ) }        
                     </div>
 
                     { headerCategories && (
@@ -36,7 +40,17 @@ export default function Header() {
                         </div>
                     ) }
 
-                    <div></div>
+                    { socialShares && (
+                        <div>
+                            {socialShares?.map((social: any) => (
+                                social.url && (
+                                    <li>
+                                        <a href={social.url}>{social.slug}</a>
+                                    </li>
+                                )
+                            ))}
+                        </div>
+                    ) }
                 </div>
             </div>
         </header>
@@ -55,15 +69,14 @@ function getHeaderCategories(data: any) {
     return headerCategories;
 }
 
-Header.query = gql`
-    {
-        customLogo {
-            ...CustomLogoFragment
-        }
-        themeOptionsHeader {
-            ...ThemeOptionsHeaderFragment
-        }
+function getSocialShares(data: any) {
+    const socialSharesData = data?.customSocialShares?.data ?? [];
+
+    if(socialSharesData.length === 0) {
+        return;
     }
-    ${CustomLogoFragment}
-    ${ThemeOptionsHeaderFragment}
-`;
+
+    const socialShares = JSON.parse(socialSharesData) ?? [];
+
+    return Object.values(socialShares);
+}

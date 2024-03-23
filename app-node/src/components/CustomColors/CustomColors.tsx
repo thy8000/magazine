@@ -1,10 +1,10 @@
 import { useQuery, gql } from "@apollo/client";
-import { CustomColorsFragment } from '../../fragments/_index';
+import { CustomColorsQuery } from '../../queries/_index';
 
 import Head from 'next/head';
 
 export default function CustomColors() {
-    const { data } = useQuery(CustomColors.query);
+    const { data } = useQuery(CustomColorsQuery);
 
     var customColors = data?.customColors ?? [];
     const hasCustomColors = Object.keys(customColors).length !== 0;
@@ -35,12 +35,3 @@ function generateCustomColorsRoot(customColors: {}) {
         return `--${key}: ${value};`;
     }).join('\n');
 }
-
-CustomColors.query = gql`
-    {
-        customColors {
-            ...CustomColorsFragment
-        }
-    }
-    ${CustomColorsFragment}
-`

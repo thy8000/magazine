@@ -14,7 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  query GetExamplePage {\n    generalSettings {\n      title\n      description\n    }\n    primaryMenuItems: menuItems(where: { location: PRIMARY }) {\n      nodes {\n        id\n        uri\n        path\n        label\n        parentId\n        cssClasses\n        menu {\n          node {\n            name\n          }\n        }\n      }\n    }\n  }\n": types.GetExamplePageDocument,
-    "\n  query getFrontPage {\n    generalSettings {\n      title\n      description\n    }\n  }\n": types.GetFrontPageDocument,
+    "\n    query getFrontPage {\n        generalSettings {\n            title\n            description\n        }\n    }\n": types.GetFrontPageDocument,
 };
 
 /**
@@ -38,7 +38,7 @@ export function gql(source: "\n  query GetExamplePage {\n    generalSettings {\n
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query getFrontPage {\n    generalSettings {\n      title\n      description\n    }\n  }\n"): (typeof documents)["\n  query getFrontPage {\n    generalSettings {\n      title\n      description\n    }\n  }\n"];
+export function gql(source: "\n    query getFrontPage {\n        generalSettings {\n            title\n            description\n        }\n    }\n"): (typeof documents)["\n    query getFrontPage {\n        generalSettings {\n            title\n            description\n        }\n    }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};
