@@ -1,9 +1,6 @@
 import { gql } from "../__generated__";
 import { useQuery } from "@apollo/client";
 import Head from "next/head";
-import Header from "../components/header";
-import EntryHeader from "../components/entry-header";
-import Footer from "../components/footer";
 import { getNextStaticProps } from "@faustwp/core";
 import { GetStaticPropsContext } from "next";
 
@@ -23,18 +20,9 @@ export default function Page() {
         <title>{siteTitle}</title>
       </Head>
 
-      <Header
-        siteTitle={siteTitle}
-        siteDescription={siteDescription}
-        menuItems={menuItems}
-      />
-
       <main className="container">
-        <EntryHeader title="Next.js Page Example" />
         <p>Next.js pages are still supported!</p>
       </main>
-
-      <Footer />
     </>
   );
 }

@@ -10,7 +10,7 @@ const HEADER_SUBPAGE_FIELDS = [
     [
         'key' => 'field_65fe105c97b09',
         'label' => 'Lista de Categorias',
-        'name' => 'theme_options_header_categories_list',
+        'name' => 'categoriesList',
         'aria-label' => '',
         'type' => 'taxonomy',
         'instructions' => '',

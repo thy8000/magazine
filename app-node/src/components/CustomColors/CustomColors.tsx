@@ -1,4 +1,5 @@
 import { useQuery, gql } from "@apollo/client";
+import { CustomColorsFragment } from '../../fragments/_index';
 
 import Head from 'next/head';
 
@@ -38,8 +39,8 @@ function generateCustomColorsRoot(customColors: {}) {
 CustomColors.query = gql`
     {
         customColors {
-        headerColor
-        pageColor
+            ...CustomColorsFragment
         }
     }
+    ${CustomColorsFragment}
 `
